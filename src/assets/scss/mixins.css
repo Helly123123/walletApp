@@ -1,0 +1,39 @@
+@use "sass:color";
+@use "./variables" as *;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin gradient-bg {
+  background: linear-gradient(to right, $primary, $secondary);
+}
+
+@mixin card-style {
+  background: $white;
+  border-radius: $border-radius-lg;
+  padding: $base-padding * 1.5;
+  box-shadow: $shadow-md;
+}
+
+@mixin mobile-only {
+  @media (max-width: #{$mobile-breakpoint - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop-only {
+  @media (min-width: $mobile-breakpoint) {
+    @content;
+  }
+}
+
+@function light($color, $amount) {
+  @return color.scale($color, $lightness: $amount);
+}
+
+@function dark($color, $amount) {
+  @return color.scale($color, $lightness: -$amount);
+}

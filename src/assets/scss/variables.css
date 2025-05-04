@@ -1,0 +1,38 @@
+:root {
+  /* Colors */
+  --primary: #6a11cb;
+  --secondary: #2575fc;
+  --text: #333333;
+  --text-light: #666666;
+  --white: #ffffff;
+  --bg: #f5f7fa;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+
+  /* Spacing */
+  --base-padding: 1rem;
+  --base-margin: 1rem;
+  --section-gap: 2rem;
+  --element-gap: 0.5rem;
+
+  /* Borders */
+  --border-radius: 0.5rem;
+  --border-radius-lg: 1rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px var(--shadow-color);
+  --shadow-md: 0 2px 10px var(--shadow-color);
+  --shadow-lg: 0 0 20px var(--shadow-color);
+
+  /* Typography */
+  --font-size-base: 1rem;
+  --font-size-sm: 0.75rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-weight-normal: 400;
+  --font-weight-bold: 600;
+
+  /* Breakpoints */
+  --mobile-breakpoint: 768px;
+  --mobile-width: 414px;
+  --mobile-height: 736px;
+}
