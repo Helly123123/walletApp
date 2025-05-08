@@ -1,26 +1,23 @@
 <template>
   <div class="briefcase-container">
-    <h2 class="title">Briefcase</h2>
     <div class="card-list">
-      <div v-for="item in purchases" :key="item.id" class="card">
+      <div
+        @click="openCurrency(item)"
+        v-for="item in purchases"
+        :key="item.id"
+        class="card"
+      >
         <div class="card-content">
           <div class="card-icon-cont">
             <img :src="item.icon" alt="" class="currency-icon" />
             <div class="currency-info">
               <span class="name">{{ item.name }}</span>
-              <span class="cost"
-                >$ {{ formatNumber(item.cost) }} • {{ item.count }}</span
-              >
+              <!-- <span class="cost"></span> -->
             </div>
           </div>
           <div class="user-data-cont">
-            <span class="costUser"
-              >$ {{ formatNumber(item.cost * item.count) }}</span
-            >
-            <span class="profit" :class="{ negative: item.profit < 0 }">
-              {{ item.profit >= 0 ? "+" : "" }}$
-              {{ formatNumber(Math.abs(item.profit)) }}
-            </span>
+            <span class="costUser">$ {{ item.cost }}</span>
+            <span class="profit">+ $ {{ item.profit }}</span>
           </div>
         </div>
       </div>
@@ -29,22 +26,19 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { getUserCurrency } from "@/composables/briefcase";
+import { onMounted, reactive, ref } from "vue";
 
+import { getAllCurrency } from "@/composables/currency";
+import { useCurrencyActions } from "@/composables/currencyAction";
+const { openCurrencyPage } = useCurrencyActions();
 const purchases = ref([]);
 
-// Функция для форматирования чисел
-const formatNumber = (num) => {
-  return Number(num).toLocaleString("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
+const getPurchases = () => {
+  purchases.value = getAllCurrency();
 };
 
-const getPurchases = () => {
-  purchases.value = getUserCurrency();
-  console.log("User purchases:", purchases.value);
+const openCurrency = (item) => {
+  openCurrencyPage(item);
 };
 
 onMounted(getPurchases);

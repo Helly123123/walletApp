@@ -1,16 +1,21 @@
 <template>
-  <div class="cont">
-    <div class="wallet">
-      <h2>{{ walletData.name }}</h2>
-      <span>$ {{ formattedBalance }}</span>
-      <p>{{ maskedCardNumber }}</p>
+  <div class="background"></div>
+  <div class="home-container">
+    <div class="cont">
+      <div class="wallet">
+        <h2>{{ walletData.name }}</h2>
+        <span>$ {{ formattedBalance }}</span>
+        <p>{{ maskedCardNumber }}</p>
+      </div>
     </div>
+    <Main />
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref, computed } from "vue";
 import { getWalletData } from "@/composables/wallet";
+import Main from "./Customize/Main.vue";
 
 const walletData = ref({});
 
@@ -37,6 +42,24 @@ onMounted(getData);
 </script>
 
 <style scoped>
+.home-container {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.home-container > * {
+  width: 100%;
+}
+
+.home-container > :last-child {
+  flex-grow: 1; /* Briefcase занимает все доступное пространство */
+}
+
 .wallet {
   width: 360px;
   height: 200px;
